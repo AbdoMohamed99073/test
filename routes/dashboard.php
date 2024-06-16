@@ -46,8 +46,3 @@ Route::group([
 
 
 });
-
-
-
-Route::get('/espon', [CategoriesController::class, 'espon'])->name('on');
-Route::get('/espoff', [CategoriesController::class, 'espoff'])->name('off');
