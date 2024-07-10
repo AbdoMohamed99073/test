@@ -48,6 +48,9 @@ class Product extends Model
 
         ] , $filters);
 
+        $builder->when($options['status'],function($quary,$status){
+            return $quary->where('status',$status);
+        });
         $builder->when($options['store_id'],function ($builder,$value){
             $builder->where('store_id',$value);
         });
@@ -56,6 +59,7 @@ class Product extends Model
             $builder->where('category_id',$value);
         });
         $builder->when($options['tags'],function ($builder,$value){
+
             $builder->whereHas('tags',function ($builder,$value){
                 $builder->where('id',$value);
             });
