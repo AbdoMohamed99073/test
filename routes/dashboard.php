@@ -3,11 +3,12 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductsControler;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Middleware\CheackUserType;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'middleware' => ['auth'],
+    'middleware' => ['auth','authtype:user'],
     'prefix' => 'dashboard'
 ],function(){
 
