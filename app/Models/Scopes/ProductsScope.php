@@ -14,9 +14,6 @@ class ProductsScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $user = Auth::user();
-            if($user->stored_id){
-                $builder->where('store_id' , '=' , $user->stored_id);
-            }
+        
     }
 }

@@ -11,6 +11,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class,'category_id','id');
@@ -33,7 +39,6 @@ class Product extends Model
             'product_tag',  
             'product_id',   
             'tag_id', 
-            'id',
             'id',
         );
     }
@@ -58,7 +63,7 @@ class Product extends Model
         $builder->when($options['category_id'],function ($builder,$value){
             $builder->where('category_id',$value);
         });
-        $builder->when($options['tags'],function ($builder,$value){
+        $builder->when($options['tag_id'],function ($builder,$value){
 
             $builder->whereHas('tags',function ($builder,$value){
                 $builder->where('id',$value);
