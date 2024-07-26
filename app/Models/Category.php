@@ -26,7 +26,7 @@ class Category extends Model
     {
         return $this->hasMany(Product::class,'category_id','id');
     }
-    
+
     public function parent()
     {
         return $this->belongsTo(Category::class,'Parent_id','id')
@@ -45,7 +45,7 @@ class Category extends Model
         'id',
     ];
     public function scopeFilter(Builder $builder, $filter)
-    {  
+    {
         $builder->when($filter['name'] ?? false , function($builder , $value){
             $builder->where('categories.name' , 'LIKE' , "%{$value}%");
         });
@@ -56,7 +56,7 @@ class Category extends Model
 
 
     public function scopeActive(Builder $builder)
-    {  
+    {
         $builder->where('status' , '=' , 'active');
     }
     public static function rules($id = 0)
@@ -69,7 +69,7 @@ class Category extends Model
                 'max:255',
                 Rule::unique('categories', 'name')->ignore($id),
                 //new Filter(['laravel','php','.net']),
-                'filter:laravel,php'
+                //'filter:laravel,php'
             ],
             'Parent_id' => [
                 'nullable',
